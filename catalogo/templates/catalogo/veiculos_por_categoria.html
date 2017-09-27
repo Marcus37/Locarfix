@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block container %}
+		<div class="page-header">
+			{% if categoria_atual %}
+			<h1>{{categoria_atual}}</h1>
+			{% else %}
+			<h1>Veiculos</h1>
+			{% endif %}
+		</div>
+
+		<div class="row">
+			{% for veiculo in veiculos %}
+				<div class="col-sm-6 col-md-4">
+					<div class="thumbnail">
+						<a href="{{ veiculo.get_absolut_url }}">
+							{% if veiculo.vec_foto %}
+								<img src="{{ veiculo.vec_foto.url }}" class="carro" alt="" />
+
+							{% endif %}
+						</a>
+						<div class="caption">
+							<h3>{{ veiculo.modelo }} <h5>{{ veiculo.marca }}</h5></h3>
+							<p>Ano de Fabricação:{{ veiculo.ano_vec }}</p>
+							<p>Aluguel por dia: R${{ veiculo.preco_al }}</p>
+
+							<p><a href="{% url 'registro_aluguel' %}" class="w3ls-login" data-toggle="modal" >Alugar</a><a href="#" class="w3ls-login" data-toggle="modal" data-target="#myModal{{ veiculo.renavan }}">Detalhes</a></p>
+							<div class="modal fade" id="myModal{{ veiculo.renavan }}" tabindex="-1" role="dialog" aria-labelledby="myModal1" aria-hidden="true">
+								<div class="modal-dialog modal-lg">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times;</button>
+											<img src="images/img5.png" class="img-responsive login-img" alt=""/>
+											<h2>Veiculo: {{ veiculo.modelo }}</h2>
+										</div>
+										<div class="modal-body modal-body-sub">
+											<form action="#" method="post">
+												<a href="{{ veiculo.get_absolut_url }}">
+													{% if veiculo.vec_foto %}
+													<img src="{{ veiculo.vec_foto.url }}" whidth="350" height="250" alt="" />
+													{% endif %}
+												</a>
+												<h4>Ano de Fabricação: {{ veiculo.veiculo.ano_vec }}</h4>
+												<h4>Ano do modelo: {{ veiculo.ano_mod }}</h4>
+												<h4>Categoria: {{ veiculo.categoria }}</h4>
+												<h4>Renavan: {{ veiculo.renavan }}</h4>
+												<h4>Marca: {{ veiculo.marca }}</h4>
+												<h4>Placa: {{ veiculo.placa }}</h4>
+												<h4>Cor: {{ veiculo.cor }}</h4>
+												<h2>Preço do Aluguel: {{ veiculo.preco_al }}</h2>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+
+
+
+		<nav aria-label="...">
+			<ul class="pagination">
+				{% for page in paginator.page_range %}
+				<li class="active"><a href="?page={{page}}">{{ page }} <span class="sr-only">(current)</span></a></li>
+				{% endfor %}
+			</ul>
+		</nav>
+
+{% endblock %}

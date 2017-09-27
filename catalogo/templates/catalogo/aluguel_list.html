@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block container %}
+		<div class="page-header">
+			<h1>Alugueis</h1>
+		</div>
+
+
+		<div class="row">
+			{% for aluguel in alugueis %}
+				<div class="col-sm-6 col-md-4">
+					<div class="thumbnail">
+						<a href="{{ veiculo.get_absolut_url }}">
+							{% if aluguel.veiculo.vec_foto %}
+								<img src="{{ aluguel.veiculo.vec_foto.url }}" whidth="350" height="250" alt="" />
+
+							{% endif %}
+						</a>
+						<div class="caption">
+							<h3>Veiculo: {{ aluguel.veiculo }}</h3> <h5>Cliente: {{ aluguel.cliente }}</h5>
+							<p>Data do aluguel:{{ aluguel.aluguel }}</p>
+
+							 <a href="#" class="w3ls-login" data-toggle="modal" data-target="#myModal{{ aluguel.veiculo.renavan }}">Detalhes</a>
+							<div class="modal fade" id="myModal{{ aluguel.veiculo.renavan }}" tabindex="-1" role="dialog" aria-labelledby="myModal1" aria-hidden="true">
+								<div class="modal-dialog modal-lg">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times;</button>
+											<img src="images/img5.png" class="img-responsive login-img" alt=""/>
+											<h2>Veiculo: {{ aluguel.veiculo.modelo }}</h2>
+										</div>
+										<div class="modal-body modal-body-sub">
+											<form action="#" method="post">
+												<a href="{{ veiculo.get_absolut_url }}">
+													{% if aluguel.veiculo.vec_foto %}
+													<img src="{{ aluguel.veiculo.vec_foto.url }}" whidth="350" height="250" alt="" />
+													{% endif %}
+												</a>
+												<h4>Cliente: {{ aluguel.cliente }}</h4>
+												<h4>Ano de Fabricação: {{ aluguel.veiculo.ano_vec }}</h4>
+												<h4>Ano do modelo: {{ aluguel.veiculo.ano_mod }}</h4>
+												<h4>Categoria: {{ aluguel.veiculo.categoria }}</h4>
+												<h4>Renavan: {{ aluguel.veiculo.renavan }}</h4>
+												<h4>Marca: {{ aluguel.veiculo.marca }}</h4>
+												<h4>Placa: {{ aluguel.veiculo.placa }}</h4>
+												<h4>Cor: {{ aluguel.veiculo.cor }}</h4>
+												<h4>Alugado em: {{ aluguel.aluguel }}</h4>
+												<h2>Preço do Aluguel: {{ aluguel.veiculo.preco_al }}</h2>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+{% endblock %}

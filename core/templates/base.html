@@ -1,0 +1,269 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<title>Locarfix</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Passengers Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="{% static 'assets/bootstrap.css' %}" rel="stylesheet" media="all">
+<link href="{% static 'assets/base.css' %}" rel="stylesheet" media="all">
+<link href="/static/assets/style.css" rel="stylesheet" media="all">
+<link rel="stylesheet" href="{% static 'assets/flexslider.css' %}" media="screen" />  <!-- flexslider-CSS -->
+<link href="/static/assets/font-awesome.min.css" rel="stylesheet">		<!-- font-awesome icons -->
+<link href="/static/assets/font-awesome.css" rel="stylesheet">		<!-- font-awesome icons -->
+<link href="{% static 'assets/css.css' %}" rel="stylesheet" media="all">		<!-- font-awesome icons -->
+
+<script type="text/javascript">
+		$(window).load(function(){
+		  $('.flexslider').flexslider({
+			animation: "slide",
+			start: function(slider){
+			  $('body').removeClass('loading');
+			}
+		  });
+		});
+</script>
+    <!--<link rel="stylesheet" href="{% static 'assets/bootstrap.min.css' %}" media="screen" />
+
+
+
+<!-- //Custom Theme files -->  
+<!-- web-fonts -->   
+<link href="//fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+<!-- //web-fonts -->
+<style>
+body {
+	color: white;
+}
+.agileits-banner{
+	background: url(/media/catalogo/veiculoimg/banner.jpg)no-repeat center 0px;
+	-webkit-background-size:cover;
+    -moz-background-size:cover;
+  	-o-background-size:cover;
+  	-ms-background-size:cover;
+	background-size:cover;
+	position: relative;
+}
+.time {
+    width: 280px;
+    height: 225px;
+}
+
+.team {
+    margin-top: -100px;
+}
+.w3l-social ul li a i.fa.fa-instagram,.agile-social ul li a i.fa.fa-instagram{
+	height: 40px;
+    width: 40px;
+    background: #FFFFFF;
+    line-height: 40px;
+    color: #FE72AE;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+.w3l-social ul li a i.fa.fa-instagram:hover,.agile-social ul li a i.fa.fa-instagram:hover{
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+	background: #FE72AE;
+	color: #FFFFFF;
+}
+
+thumbnail {
+    width: 15em;
+    height: 10em;
+    overflow: hidden;
+}
+.carro {
+    border: 1px solid transparent;
+    width: 100%;
+}
+.carro {
+	min-width: 8em;
+    min-height: 16em;
+    max-width: 16em;
+    max-height: 8em;
+    overflow: hidden;
+}
+
+</style>
+</head>
+<body>
+	<!-- banner -->
+	<div class="agileits-banner backg">
+		<div class="bnr-agileinfo">
+			<!-- navigation -->
+			<div class="top-nav w3-agiletop">
+				<div class="container">
+					<div class="navbar-header w3llogo">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<h1><a href="{% url 'index'%}">Locarfix</a></h1>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<div class="w3menu navbar-right">
+							<ul class="nav navbar">
+								<li><a href="{% url 'pesquisa' %}">Pesquisa veiculos</a></li>
+								<li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span data-letters="Pages">Categorias</span><span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										{% for categoria in categorias %}
+											<li><a href="{% url 'catalogo:categoria_id' categoria.id %}">{{ categoria.tipo_vec }}</a></li>
+                						{% endfor %}
+									</ul>
+								</li>
+								<li><a href="{% url 'contato' %}">Contato</a></li>
+								{% if user.username %}
+								<li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span data-letters="Pages">Óla {{ user }}</span><span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="{% url 'minha_conta' %}">Minha Conta</a></li>
+										<li><a href="{% url 'logout' %}">Sair</a></li>
+									</ul>
+								</li>
+              					{% else %}
+              					<li><a href="{% url 'login' %}">Entrar</a></li>
+              					<li><a href="{% url 'registro' %}">Registre-se</a></li>
+              					{% endif %}
+							</ul>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+			</div>
+			<!-- //navigation -->
+			<!-- banner-text -->
+
+				<div class="container">
+					{% block container %}
+
+        			{% endblock %}
+				</div>
+		</div>
+	</div>
+<!-- footer -->
+	<div class="footer w3-w3layouts">
+		<div class="container">
+			<div class="footer-agileinfo">
+				<div class="col-md-4 col-sm-4 footer-wthreegrid">
+					<h3>Sobre Nós</h3>
+					<div class=" footerabt-w3text">
+						<p>Alugue seu veículo aqui na LOCARFIX Veículos. LOCARFIX aqui você encontra o veículo certo ! </p>
+						<div class="social-w3licon">
+							<a href="#" class="social-button facebook"><i class="fa fa-facebook"></i></a>
+							<a href="#" class="social-button instagram"><i class="fa fa-instagram"></i></a>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+
+				<div class="col-lg-12 col-sm-4 footer-wthreegrid footer-tags">
+
+					<ul>
+						<li class="pull-right"><a href="#top">Voltar ao Topo</a></li>
+			      		<li><a href="{% url 'index'%}">Início</a></li>
+			      		<li><a href="{% url 'contato'%}">Contato</a></li>
+			      		<li><a href="#">Termos e Privacidade</a></li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+
+
+
+
+		</div>
+	</div>
+	<div class="copy-right">
+		<div class="container">
+			<p>© 2017 Locarfix | Design by <a href="http://w3layouts.com"> W3layouts.</a></p>
+		</div>
+	</div>
+<!-- footer-end -->
+		<script src="{% static 'assets/jquery-2.2.3.min.js' %}"></script>
+	<script src="{% static 'assets/SmoothScroll.min.js' %}"></script>
+	<script src="{% static 'assets/jarallax.js' %}"></script>
+	<script type="{% static 'assets/javascript' %}">
+		/* init Jarallax */
+		$('.jarallax').jarallax({
+			speed: 0.5,
+			imgWidth: 1366,
+			imgHeight: 768
+		})
+	</script>
+	<!-- //js -->
+	<!-- FlexSlider -->
+	<script defer src="{% static 'assets/jquery.flexslider.js' %}"></script>
+	<script type="{% static 'assets/javascript' %}">
+		$(window).load(function(){
+		  $('.flexslider').flexslider({
+			animation: "slide",
+			start: function(slider){
+			  $('body').removeClass('loading');
+			}
+		  });
+		});
+	</script>
+	<!-- //End-FlexSlider -->
+	<!-- flexSlider -->
+	<script type="{% static 'assets/javascript' %}">
+		$(window).load(function(){
+		  $('.flexslider1').flexslider({
+			animation: "slide",
+			start: function(slider){
+			  $('body').removeClass('loading');
+			}
+		  });
+		});
+	</script>
+	<!-- //flexSlider -->
+	<!-- start-smooth-scrolling -->
+	<script type="{% static 'assets/javascript' %}" src="{% static 'assets/move-top.js' %}"></script>
+	<script type="{% static 'assets/javascript' %}" src="{% static 'assets/easing.js' %}"></script>
+	<script type="{% static 'assets/javascript' %}">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){
+					event.preventDefault();
+
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+	</script>
+	<!-- //end-smooth-scrolling -->
+	<!-- smooth-scrolling-of-move-up -->
+	<script type="{% static 'assets/javascript' %}">
+		$(document).ready(function() {
+			/*
+			var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear'
+			};
+			*/
+
+			$().UItoTop({ easingType: 'easeOutQuart' });
+
+		});
+	</script>
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <!--<script src="{% static 'assets/bootstrap.min.js' %}"></script>-->
+    <script src="{% static 'assets/bootstrap.js ' %}"></script>
+    <script src="{% static 'assets/jquery.fitvids.js ' %}"></script>
+    <script src="{% static 'assets/jquery.flexslider.js ' %}"></script>
+    <script src="{% static 'assets/jquery-2.1.4.min.js ' %}"></script>
+    <script src="{% static 'assets/modernizr.min.js ' %}"></script>
+    <script src="{% static 'assets/script.js ' %}"></script>
+</body>
+</html>
